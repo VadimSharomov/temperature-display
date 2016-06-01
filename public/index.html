@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(
+                getTemp = function () {
+                    $.ajax({url: "http://localhost:8080/temperature"}).then(function (data, status, jqXHR) {
+                        $('.temperature').html(data.value);
+                        console.log(jqXHR);
+                    });
+                });
+
+        setInterval(getTemp, 5000);
+    </script>
+
+</head>
+
+<body>
+<div align="center">
+    <p class="temperature"> </p>
+</div>
+</body>
+</html>

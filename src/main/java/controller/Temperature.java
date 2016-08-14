@@ -1,5 +1,8 @@
 package controller;
 
+/**
+ * @author Vadim Sharomov
+ */
 public class Temperature {
     private final int value;
     private final int time;

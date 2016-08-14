@@ -3,6 +3,9 @@ package controller;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author Vadim Sharomov
+ */
 @SpringBootApplication
 public class Application {
 

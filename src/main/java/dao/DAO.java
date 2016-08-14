@@ -5,8 +5,7 @@ import controller.Temperature;
 import java.util.List;
 
 /**
- * Created by Vadim on 01.06.2016.
- * 
+ * @author Vadim Sharomov
  */
 public interface DAO {
 

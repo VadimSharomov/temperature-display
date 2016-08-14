@@ -1,6 +1,7 @@
 package dao;
 
 import controller.Temperature;
+import org.slf4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -8,11 +9,13 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 /**
- * Created by Vadim on 26.05.2016.
- * 
+ * @author Vadim Sharomov
  */
-public class DAOmySQL implements DAO{
+public class DAOmySQL implements DAO {
+    private final static Logger logger = getLogger(DAOmySQL.class);
     private String table;
     private JdbcTemplate jdbcTemplateObject;
 
@@ -39,6 +42,7 @@ public class DAOmySQL implements DAO{
             return new ArrayList<>(jdbcTemplateObject.query(SQL,
                     new Object[]{start, end}, new TempMapper()));
         } catch (DataAccessException e) {
+            logger.error("DataAccessException in getTempListBetweenValues", e.getMessage());
             return null;
         }
     }
@@ -48,5 +52,6 @@ public class DAOmySQL implements DAO{
     public void create(int time, int temperature) {
         String SQL = "INSERT INTO " + table + " (TIMESTAMP, temperature) VALUES (?, ?)";
         jdbcTemplateObject.update(SQL, time, temperature);
+        logger.info("Create record in DB '" + time + " - " + temperature + "'");
     }
 }

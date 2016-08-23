@@ -1,4 +1,4 @@
-package controller;
+package entity;
 
 /**
  * @author Vadim Sharomov

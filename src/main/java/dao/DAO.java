@@ -1,6 +1,7 @@
 package dao;
 
-import controller.Temperature;
+import entity.Temperature;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
@@ -8,6 +9,8 @@ import java.util.List;
  * @author Vadim Sharomov
  */
 public interface DAO {
+
+    void setDataSource(JdbcTemplate jdbcTemplate, String tableName);
 
     List<Temperature> getTempListBetweenValues(int start, int end);
 

@@ -1,6 +1,6 @@
 package dao;
 
-import controller.Temperature;
+import entity.Temperature;
 import org.slf4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 

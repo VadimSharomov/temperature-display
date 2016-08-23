@@ -1,11 +1,11 @@
 package dao;
 
-import controller.Temperature;
+import entity.Temperature;
 import org.slf4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,25 +14,18 @@ import static org.slf4j.LoggerFactory.getLogger;
 /**
  * @author Vadim Sharomov
  */
+@Service
 public class DAOmySQL implements DAO {
     private final static Logger logger = getLogger(DAOmySQL.class);
     private String table;
     private JdbcTemplate jdbcTemplateObject;
 
-    private DAOmySQL() {
-        this.table = "temperature";
-    }
+    public DAOmySQL() {}
 
-    private static class SingleToneHelper {
-        private static final DAOmySQL INSTANCE = new DAOmySQL();
-    }
-
-    public static DAOmySQL getInstance() {
-        return SingleToneHelper.INSTANCE;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+    @Override
+    public void setDataSource(JdbcTemplate jdbcTemplate, String tableName) {
+        this.table = tableName;
+        this.jdbcTemplateObject = jdbcTemplate;
     }
 
     @Override

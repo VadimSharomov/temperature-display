@@ -8,19 +8,30 @@
         $(document).ready(
                 getTemp = function () {
                     $.ajax({url: "http://localhost:8080/temperature"}).then(function (data, status, jqXHR) {
-                        $('.temperature').html(data.value);
+                        $('.time').html("time: " + convertSecondsToHMS(data.time));
+                        $('.temperature').html("average temperature: " + data.value);
                         console.log(jqXHR);
                     });
                 });
 
         setInterval(getTemp, 5000);
+
+
+        function convertSecondsToHMS(sec) {
+        sec = Number(sec);
+        var h = Math.floor(sec / 3600);
+        var m = Math.floor(sec % 3600 / 60);
+        var s = Math.floor(sec % 3600 % 60);
+        return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); }
+
     </script>
 
 </head>
 
 <body>
 <div align="center">
-    <p class="temperature"> </p>
+    <p class="time"></p>
+    <p class="temperature"></p>
 </div>
 </body>
 </html>

@@ -18,12 +18,11 @@
 
 
         function convertSecondsToHMS(sec) {
-        sec = Number(sec);
-        var h = Math.floor(sec / 3600);
-        var m = Math.floor(sec % 3600 / 60);
-        var s = Math.floor(sec % 3600 % 60);
-        return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); }
-
+            sec = Number(sec);
+            var h = Math.floor(sec / 3600);
+            var m = Math.floor(sec % 3600 / 60);
+            var s = Math.floor(sec % 3600 % 60);
+            return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); }
     </script>
 
 </head>

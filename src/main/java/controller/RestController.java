@@ -93,7 +93,12 @@ public class RestController {
         int nowTimeInSec = (cal.get(Calendar.HOUR_OF_DAY) * 3600) + (cal.get(Calendar.MINUTE) * 60) + cal.get(Calendar.SECOND);
 
         //get list of values temperature in the last hour
-        List<Temperature> tempList = dao.getTempListBetweenValues(nowTimeInSec - 3600, nowTimeInSec);
+        int timeInterval = 3600;// one hour
+        List<Temperature> tempList = dao.getListTemperaturesInTimeInterval(nowTimeInSec - timeInterval, nowTimeInSec);
+        if (tempList.size() == 0) {
+            logger.error("Data is empty");
+            return new Temperature(0, 0);
+        }
 
         //calculate the average temperature
         int averageTemperature = 0;

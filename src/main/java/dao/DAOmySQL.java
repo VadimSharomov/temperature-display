@@ -29,14 +29,14 @@ public class DAOmySQL implements DAO {
     }
 
     @Override
-    public List<Temperature> getTempListBetweenValues(int start, int end) {
+    public List<Temperature> getListTemperaturesInTimeInterval(int start, int end) {
         String SQL = "SELECT * FROM " + table + " WHERE TIMESTAMP BETWEEN  ? AND ?";
         try {
             return new ArrayList<>(jdbcTemplateObject.query(SQL,
                     new Object[]{start, end}, new TempMapper()));
         } catch (DataAccessException e) {
-            logger.error("DataAccessException in getTempListBetweenValues", e.getMessage());
-            return null;
+            logger.error("DataAccessException in getListTemperaturesInTimeInterval", e.getMessage());
+            return new ArrayList<>();
         }
     }
 

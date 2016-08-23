@@ -12,7 +12,7 @@ public interface DAO {
 
     void setDataSource(JdbcTemplate jdbcTemplate, String tableName);
 
-    List<Temperature> getTempListBetweenValues(int start, int end);
+    List<Temperature> getListTemperaturesInTimeInterval(int start, int end);
 
     void create(int time, int temperature);
 }

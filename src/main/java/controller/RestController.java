@@ -79,7 +79,9 @@ public class RestController {
             // calculating a random temperature from -60 to 60 degrees
             // and storage in the database at intervals of 10 seconds
             dao.create(i, (int) (61 * Math.random() * (Math.random() > 0.4999 ? 1 : -1)));
-            System.out.println(finish - i);
+            if ((i % 864) == 0) {
+                logger.info("*** " + (i % 864) + " %");
+            }
         }
         return new Temperature(0, 0);
     }
